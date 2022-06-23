@@ -3,7 +3,7 @@ import { MessageBox } from './components/MyUI';
 
 const showMessageBox = () => {
   MessageBox({
-    confirmText: '確定',
+    confirmButtonText: '確定',
     title: 'MessageBox',
     content: 'This is MessageBox content.',
   })
@@ -38,7 +38,7 @@ const showPromptMessageBox = () => {
     title: 'PromptMessageBox',
     content: 'This is PromptMessageBox content.',
   })
-    .then((value) => {
+    .then(value => {
       console.log('PromptMessageBox resolve', value);
     })
     .catch(() => {
