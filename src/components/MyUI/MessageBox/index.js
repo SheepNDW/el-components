@@ -4,6 +4,17 @@ import { createApp, watch } from 'vue';
 
 export const fields = ['confirm', 'prompt'];
 
+/**
+ * 提示訊息對話框
+ * @param {Object} options - MessageBox 配置項
+ * @param {string} options.title - 標題
+ * @param {string} options.content - 內容
+ * @param {string} options.confirmButtonText - 確認按鈕文本
+ * @param {boolean} options.showCancelButton - 是否顯示取消按鈕
+ * @param {string} options.cancelButtonText - 取消按鈕文本
+ * @param {string} options.field - 提示框種類字段
+ * @returns Promise
+ */
 const MessageBox = (options) => {
   const messageBoxApp = createApp(MessageBoxComponent, options);
 
@@ -39,8 +50,10 @@ function showMessageBox(app, { resolve, reject }) {
           default:
             break;
         }
-
-        hideMessageBox(app);
+        // 推遲 1 秒再將 app 卸載，為了讓退場特效先執行
+        setTimeout(() => {
+          hideMessageBox(app);
+        }, 1000);
       }
     }
   );

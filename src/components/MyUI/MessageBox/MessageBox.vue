@@ -1,8 +1,9 @@
 <script setup>
-import { h, ref } from 'vue';
+import { ref } from 'vue';
 import { fields } from './index';
+import { ContentView, promptValue } from './ContentView';
 
-const props = defineProps({
+defineProps({
   title: {
     type: String,
     default: 'Message',
@@ -33,11 +34,11 @@ const props = defineProps({
 });
 
 const visible = ref(false);
+const type = ref('confirm');
+
 const setVisible = (isVisible) => {
   visible.value = isVisible;
 };
-
-const type = ref('confirm');
 
 const handleCancel = () => {
   type.value = 'cancel';
@@ -47,25 +48,6 @@ const handleCancel = () => {
 const handleConfirm = () => {
   type.value = 'confirm';
   setVisible(false);
-};
-
-// 用 h 函式寫一個元件去判斷是否要有 input 框
-const promptValue = ref('');
-const ContentView = ({ field }) => {
-  switch (field) {
-    case !field || 'confirm':
-      return h('p', null, props.content);
-
-    case 'prompt':
-      return h('input', {
-        value: promptValue.value,
-        onInput: (e) => (promptValue.value = e.target.value),
-        class: 'messagebox-input',
-      });
-
-    default:
-      return '';
-  }
 };
 
 // 暴露給元件實例
@@ -97,7 +79,7 @@ defineExpose({
           </span>
         </div>
         <p class="my-4 text-base font-light text-gray-500">
-          <ContentView :field="field" />
+          <ContentView :field="field" :content="content" />
         </p>
         <div class="w-full flex justify-end items-center">
           <button
