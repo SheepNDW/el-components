@@ -6,13 +6,13 @@ const showMessageBox = () => {
     confirmText: '確定',
     title: 'MessageBox',
     content: 'This is MessageBox content.',
-  });
-  // .then(() => {
-  //   console.log('MessageBox resolve');
-  // })
-  // .catch(() => {
-  //   console.log('MessageBox reject');
-  // });
+  })
+    .then(() => {
+      console.log('MessageBox resolve');
+    })
+    .catch(() => {
+      console.log('MessageBox reject');
+    });
 };
 
 const showConfirmMessageBox = () => {
@@ -21,13 +21,13 @@ const showConfirmMessageBox = () => {
     cancelButtonText: '取消',
     title: 'ConfirmMessageBox',
     content: 'This is ConfirmMessageBox content.',
-  });
-  // .then(() => {
-  //   console.log('ConfirmMessageBox resolve');
-  // })
-  // .catch(() => {
-  //   console.log('ConfirmMessageBox reject');
-  // });
+  })
+    .then(() => {
+      console.log('ConfirmMessageBox resolve');
+    })
+    .catch(() => {
+      console.log('ConfirmMessageBox reject');
+    });
 };
 
 const showPromptMessageBox = () => {
@@ -37,18 +37,18 @@ const showPromptMessageBox = () => {
     cancelButtonText: '取消',
     title: 'PromptMessageBox',
     content: 'This is PromptMessageBox content.',
-  });
-  // .then(() => {
-  //   console.log('PromptMessageBox resolve');
-  // })
-  // .catch(() => {
-  //   console.log('PromptMessageBox reject');
-  // });
+  })
+    .then((value) => {
+      console.log('PromptMessageBox resolve', value);
+    })
+    .catch(() => {
+      console.log('PromptMessageBox reject');
+    });
 };
 </script>
 
 <template>
-  <div>
+  <div class="pl-4 pt-4">
     <h2 class="text-lg">MessageBox test</h2>
     <button @click="showMessageBox">message box</button>
     <button @click="showConfirmMessageBox">confirm message box</button>
