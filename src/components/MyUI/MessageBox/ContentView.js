@@ -1,6 +1,9 @@
 import { h, ref } from 'vue';
 
 const promptValue = ref('');
+const setPromptValue = (val) => {
+  promptValue.value = val;
+};
 
 const ContentView = ({ field, content }) => {
   switch (field) {
@@ -19,4 +22,4 @@ const ContentView = ({ field, content }) => {
   }
 };
 
-export { promptValue, ContentView };
+export { promptValue, setPromptValue, ContentView };

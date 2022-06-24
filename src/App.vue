@@ -17,6 +17,7 @@ const showMessageBox = () => {
 
 const showConfirmMessageBox = () => {
   MessageBox.confirm({
+    confirmButtonText: '確定',
     showCancelButton: true,
     cancelButtonText: '取消',
     title: 'ConfirmMessageBox',
@@ -38,11 +39,27 @@ const showPromptMessageBox = () => {
     title: 'PromptMessageBox',
     content: 'This is PromptMessageBox content.',
   })
-    .then(value => {
+    .then((value) => {
       console.log('PromptMessageBox resolve', value);
     })
     .catch(() => {
       console.log('PromptMessageBox reject');
+    });
+};
+
+const mockRemove = () => {
+  MessageBox.confirm({
+    confirmButtonText: '確定',
+    showCancelButton: true,
+    cancelButtonText: '取消',
+    title: '刪除產品',
+    content: '你確定要刪除此產品嗎？',
+  })
+    .then(() => {
+      console.log('call delete api');
+    })
+    .catch(() => {
+      console.log('cancel delete');
     });
 };
 </script>
@@ -53,6 +70,7 @@ const showPromptMessageBox = () => {
     <button @click="showMessageBox">message box</button>
     <button @click="showConfirmMessageBox">confirm message box</button>
     <button @click="showPromptMessageBox">prompt message box</button>
+    <button @click="mockRemove">模擬一下刪除業務</button>
   </div>
 </template>
 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import { fields } from './index';
-import { ContentView, promptValue } from './ContentView';
+import { ContentView, promptValue, setPromptValue } from './ContentView';
 
 defineProps({
   title: {
@@ -54,8 +54,9 @@ const handleConfirm = () => {
 defineExpose({
   setVisible,
   visible,
-  promptValue,
   type,
+  promptValue,
+  setPromptValue,
 });
 </script>
 

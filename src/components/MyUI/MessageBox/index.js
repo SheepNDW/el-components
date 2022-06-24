@@ -12,12 +12,12 @@ export const fields = ['confirm', 'prompt'];
  * @param {string} options.confirmButtonText - 確認按鈕文本
  * @param {boolean} options.showCancelButton - 是否顯示取消按鈕
  * @param {string} options.cancelButtonText - 取消按鈕文本
- * @param {string} options.field - 提示框種類字段
+ * @callback confirm - 調用 Confirm 類型彈出框
+ * @callback prompt - 調用 Prompt 類型彈出框
  * @returns Promise
  */
 const MessageBox = (options) => {
   const messageBoxApp = createApp(MessageBoxComponent, options);
-
   return new Promise((resolve, reject) => {
     showMessageBox(messageBoxApp, { resolve, reject });
   });
@@ -37,15 +37,16 @@ function showMessageBox(app, { resolve, reject }) {
   vm.setVisible(true);
 
   watch(
-    [() => vm.visible, () => vm.promptValue],
-    ([newVisible, newPromptValue]) => {
+    () => vm.visible,
+    (newVisible) => {
       if (!newVisible) {
         switch (vm.type) {
           case 'cancel':
             reject();
             break;
           case 'confirm':
-            resolve(newPromptValue);
+            resolve(vm.promptValue);
+            vm.setPromptValue('');
             break;
           default:
             break;
