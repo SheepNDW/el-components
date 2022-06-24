@@ -72,9 +72,11 @@ function useMessageBox() {
     })
       .then(() => {
         console.log('call delete api');
+        Message({ type: 'success', text: '刪除成功' });
       })
       .catch(() => {
         console.log('cancel delete');
+        Message({ text: '已取消' });
       });
   };
 
